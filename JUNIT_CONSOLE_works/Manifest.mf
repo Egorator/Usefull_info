@@ -1,0 +1,4 @@
+MY-COMMENT: Class-Path: C:\JUNIT_WORKSPACE\junit-4.10.jar
+Main-Class: Home.Egor.TestRunner2
+qewert: only relative path in Class-Path is allowed!
+Class-Path: junit-4.10.jar

@@ -1,0 +1,71 @@
+#Info about JDBC:
+Port number: 3306 win serv name: MySQL57
+
+To stop: in admin console go to directory: cd "C:\Program Files\MySQL\MySQL Server 5.7\bin\"
+mysqladmin -u Egor -p shutdown
+
+To start: admin cmd:
+mysqld --console -h "C:\ProgramData\MySQL\MySQL Server 5.7\Data"
+
+#Intellij idea set dependencies
+File - Project structure - Modules - dependencies.
+
+#Path to JDBC Driver in IntellijIdea:
+C:\ProgramData\MySQL\Connector.J 5.1
+
+#Path to DB in MySQL:
+C:\ProgramData\MySQL\MySQL Server 5.7\Data\emp (emp is your DB name)
+
+#MySQL show databases:
+mysql> SHOW DATABASES;
+
+#MySQL show tables in database:
+mysql> show tables FROM emp;    (emp is your database)
+
+#MySQL show table info:
+mysql> DESCRIBE EMP.Employees;      (Employees is your table in database, EMP is your database)
+
+#HotKey for multiline comment: Ctrl+Shift+/
+
+#Compile java class with dependency on jar:
+javac -cp PATH\TO\DEPENDENCY.jar YOUR_CLASS.java
+
+#Run java class with dependency on jar:
+java -cp PATH\TO\DEPENDENCY.jar;DIR_OF(MY_CLASS.class) MY_CLASS
+java -cp junit-4.10.jar;. TestRunner2
+
+#Git/SHELL set command on start:
+go to C:\Users\Egorr, find file .bashrc, edit and write a command. Language to write on is bash, or sh
+
+#Git/SHELL set alias:
+go to C:\Users\Egorr, find file .bashrc, edit and write a command. Language to write on is bash, or sh
+EXAMPLE:
+alias gs='git status'
+
+#Git show all  files commited into repository:
+git ls-files --stage
+
+#IntellijIdea build JAR file:
+1)File>Save all
+2)Build>Make project
+3)File>Project Structure>Artifacts
+4)Plus>Jar>From modules with dependencies
+5)Make sure that "extract to the target JAR" radiobutton is checked
+6)Choose "Main Class" from "...", choose yours (e.g. Home.Egor.Main)>click OK
+7)Click checkbox "Build on make"!
+8)Apply, OK, Build>Make Project
+9)Search for JAR in "out/" folder
+
+#Windows cmd call HELP:
+YOUR_COMMAND /?
+
+#IntellijIdea setup "run configuration":
+1)File>Save all, Build>Make Project
+2)Run>Edit configurations>plus[+]>JAR application
+3)Set Path to JAR
+4)Click plus[+] "Before launch: Activate tool window">Build artifacts, select your jar
+5)Apply, ok
+
+#Git clone repository for server:
+git clone --bare file://PATH_TO_REPO
+NOTE: remove --bare for full copy

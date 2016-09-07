@@ -1,0 +1,3 @@
+MY-COMMENT: Class-Path: C:\JUNIT_WORKSPACE\junit-4.10.jar
+Main-Class: Home.Egor.TestRunner2
+Class-Path: file:///C:\JUnit\junit-4.10.jar
