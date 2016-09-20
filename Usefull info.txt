@@ -69,3 +69,43 @@ YOUR_COMMAND /?
 #Git clone repository for server:
 git clone --bare file://PATH_TO_REPO
 NOTE: remove --bare for full copy
+
+
+#Get information about hard disks, usb sticks, their partitions under Linux:
+ls /dev | grep sd
+
+#Get information about mounted partitions:
+mount | grep sd
+
+#Unmount partition (if any):
+umount /dev/sdX1
+
+#Destroy partition table under Linux(input file is file full of zeros, output file is our usb. bs is bytes to copy per iteration, count is a number of iterations(hense, we copy 1024 * 1024 bytes)):
+sudo dd if=/dev/zero of=/dev/sdX bs=1024 count=1024
+
+#Create partition table and partitions on device
+sudo fdisk /dev/sdX
+
+#Fdisk commands:
+o: create a new empty DOS partition table
+p: print the partition table
+n: add a new partition
+//we select primary partition and leave default start sector and end sector
+a: toggle a bootable flag
+t: change a partition type
+//then we choose fat32 (LBA), partition type: c
+w: write table to disk and exit
+
+#Read manuals for detaled information about formatting partition:
+man mkfs
+man mkfs.vfat
+
+#Formatting partition:
+mkfs -t vfat -F 32 -n ENTERYOURPARTITIONNAME /dev/sdX1
+
+#Grub installation:
+sudo grub-install --boot-directory=/media/student/BOOTABLE_US/boot /dev/sdX
+
+#Create grub configuration file: 
+/media/student/BOOTABLE_US/boot/grub/grub.cfg
+//see example https://raw.githubusercontent.com/v-slava/dotrc/master/other_files/grub.cfg
