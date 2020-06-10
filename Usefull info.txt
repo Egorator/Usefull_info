@@ -109,3 +109,75 @@ sudo grub-install --boot-directory=/media/student/BOOTABLE_US/boot /dev/sdX
 #Create grub configuration file: 
 /media/student/BOOTABLE_US/boot/grub/grub.cfg
 //see example https://raw.githubusercontent.com/v-slava/dotrc/master/other_files/grub.cfg
+
+
+Linux shell command to list runnin processes theirs ids:
+ps
+Useful arguments for "ps" command:
+ps -e : shows all processes instead of only showing ones that are associated with current user and current terminal (always use this argument by default!)
+ps -eH : ("H" argument shows process hierarchy)
+ps -eHf : ("f" argument shows more info about each process (also the command that started this process), not only the name of the process)
+for details use "man ps"
+
+To find process id of a process, you may use command somewhat like this: "ps -e | grep -i chrome" (where chrome is a name of your desired process)
+or "pgrep chrome"
+
+To search for text in man / less / vim command outputs, press slash ("/"), type your searched text and press enter. To navigate between search results, use "n" for next result and "Shift + n" for previous result respectively.
+
+Redirect command output to file (stdout only) (example) : man ps > ps.txt
+
+Redirect command output to another command's input: (example) : ps -e | grep -i chrome
+
+Viewer for command output (useful for efficient viewing and navigating the page / command output) (for example if you want to apply a search, or if a console does not support scrolling, etc.) (example) : ps -e | less -i
+Thus, "less" command is a viewer, it is an editor withot an edit function
+
+How to display output of a file on the screen: cat (example: cat ps.txt)
+
+To restart the whole system: sudo reboot (requires root credentials)
+
+To kill process you need to use "kill" command and to pass process id to it (example: kill 4097). To kill the process "the hard way", use "kill -9 4097"
+
+To view more detailed info from "ls" command: ls -l
+
+Directory with information about the process: /proc/1738 (where 1738 is an id of your process). Interesting files in such directories: cmdline, comm, exe, cwd, fd
+cwd stands for Current Working Directory, maybe it's path will lead you to the .sh that started this process. exe is a symbolic link that leads to the executable file (binary executable).
+cmdline file contains path to an executable file (scrips or binary, etc) and arguments (if any) that were passed to the corresponding interpreter (if any) when it was invoked.
+fd stands for file descriptor, it contains a list of files that are opened by this process at the current moment.
+
+To reboot the whole system: use "sudo reboot". NOTE! ASK OTHERS ABOUT WETHER MAY YOU DO THIS COMMAND!
+
+To view file properties and details info, use "file /medie/somethingelse/yourfile" command, where yourfile is your file
+If this command states that this file is ELF, than this is an executable binary file, not a script of some kind.
+
+How to view which files process had opened during its runtime:
+strace -f -s 8192 -o trace_file.txt -e trace=openat telegram -argument
+, where 8192 is a maximum length of a line of an output file (use big number, nevermind), telegram is a name of your executable(binary or script of any kind, etc), and -argument is an argument (enter multiline if any). This command creates trace_file.txt in current working directory and writes in it a list of files opened at any time by your executable. 
+
+Display processes that have open network connections and ports: netstat -apn
+
+RPM is a package manager and also an extension of package format. Useful commands:
+rpm -qa : list of all installed packages (execute in any place)
+rpm -ql [PACKAGE_NAME] : list of all files from PACKAGE_NAME package
+
+To find out ip of a current server: ifconfig
+
+To find a file by filename in bash / linux consoles, use find -name (e.g. find -name 'log4*.jar', or find -name 'log4j.jar')
+
+
+#SVN #Subversion
+Command to clean (remove) all unversioned files from you svn repo:
+svn cleanup . --remove-unversioned
+
+Bash command to show revision changes (analog of git show):
+svn diff -c [REVISION_NUMBER]
+
+
+
+#Tortoise SVN
+How to check the branch name:
+In file explorer, right-click on root folder of this project, choose TortoiseSVN->Repo-browser. In URL inputbox you'll see the name of a branch (for example, in svn folder I see [your_repo_root] folder, but in repo-browser I see https://[your_host]/[your_repo_root]/trunk , thus, branch is named "trunk")
+
+How to create a patch FROM EXISTING COMMIT using TortoiseSVN:
+Go to root folder of your repo, click LKM, choose TortoiseSVN -> show log.
+Find your commit and click RKM -> show changes as unified diff.
+In newely opened window click file -> save as -> ... (save file somewhere with adequate name)
